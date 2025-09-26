@@ -1,7 +1,10 @@
 object camion {
     const carga = []
 
-    method cargar(unaCosa) {carga.add(unaCosa)}
+    method cargar(unaCosa) {
+        carga.add(unaCosa) 
+        unaCosa.consencuenciaDeLaCarga()
+    }
     method descargar(unaCosa) {carga.remove(unaCosa)}
     method pesoTotal() = 1000 + self.cargaTotal() 
     method cargaTotal() = carga.sum({c=>c.peso()})
@@ -15,4 +18,4 @@ object camion {
     method puedeCircular(unNivel) = not self.excedidoDePeso() && self.cosasSuperanPeligrosidad(unNivel).isEmpty()
     method tieneAlgoQuePesaEntre(min,max) = carga.any({c=>c.peso().between(min, max)})
     method cosaMasPesada() = carga.max({c=>c.peso()})
-} 
+}
